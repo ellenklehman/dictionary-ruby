@@ -15,5 +15,11 @@ describe 'Term' do
     test_word.save
     expect(test_word.word).to eq 'spoon'
   end
+
+  it 'allows the definition to be printed to the screen' do
+    test_word = Term.new('spoon', 'a tool for eating soup' )
+    test_word.save
+    expect(test_word.definition).to eq 'a tool for eating soup'
+  end
 end
 
