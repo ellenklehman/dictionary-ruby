@@ -26,4 +26,5 @@ class Term
   def definition
     @definition
   end
+
 end
