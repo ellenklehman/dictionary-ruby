@@ -35,7 +35,13 @@ describe 'Term' do
   test_definition.save
   test_definition.edit_definition(0,'a four legged animal')
   expect(test_definition.definition).to eq 'a four legged animal'
-end
+  end
+
+  it 'searches the dictionary for a word' do
+    test_word = Term.new('find', 'look for me')
+    test_word.save
+    expect(Term.search ('find')).to eq 'find: look for me'
+  end
 
   describe '.all' do
     it 'is empty at first' do

@@ -10,6 +10,14 @@ class Term
     @@all_terms = []
   end
 
+  def Term.search word
+    @@all_terms.each_with_index do |object, index|
+      if object.word == word
+       return object.word + ": " + object.definition
+      end
+    end
+  end
+
   def initialize word, definition
     @word = word
     @definition = definition
