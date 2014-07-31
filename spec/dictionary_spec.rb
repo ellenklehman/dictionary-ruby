@@ -30,6 +30,13 @@ describe 'Term' do
     expect(test_word.word).to eq 'dog'
   end
 
+  it 'replaces a definition'do
+  test_definition = Term.new('dog', 'a three legged animal')
+  test_definition.save
+  test_definition.edit_definition(0,'a four legged animal')
+  expect(test_definition.definition).to eq 'a four legged animal'
+end
+
   describe '.all' do
     it 'is empty at first' do
       expect(Term.all).to eq []

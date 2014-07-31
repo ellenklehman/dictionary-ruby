@@ -75,8 +75,12 @@ def edit_entry
     end
   elsif user_input == 'd'
     puts "Write new definition below"
-    user_choice = gets.chomp
-    Term.all[user_number-1][1] = user_choice
+    new_definition = gets.chomp
+    Term.all.each_with_index do |term, index|
+      if Term.all[user_number-1].definition == term.definition
+        term.edit_definition(index, new_definition)
+      end
+    end
   else
     puts "Not a valid input"
   end

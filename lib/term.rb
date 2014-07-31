@@ -32,7 +32,9 @@ class Term
     chosen_word.replace new_word
   end
 
-  def edit_definition
+  def edit_definition(choice, new_definition)
+    chosen_definition = @@all_terms[choice].definition
+    chosen_definition.replace new_definition
   end
 
 end
