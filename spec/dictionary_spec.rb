@@ -23,11 +23,19 @@ describe 'Term' do
     expect(test_word.definition).to eq 'a tool for eating soup'
   end
 
+  it 'replaces a word' do
+    test_word = Term.new('dogg', 'a four legged animal')
+    test_word.save
+    test_word.edit_word(0,'dog')
+    expect(test_word.word).to eq 'dog'
+  end
+
   describe '.all' do
     it 'is empty at first' do
       expect(Term.all).to eq []
     end
   end
+
 
   describe '.clear' do
     it' empties out all the saved words and definitions' do

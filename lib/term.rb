@@ -27,4 +27,12 @@ class Term
     @definition
   end
 
+  def edit_word(choice, new_word)
+    chosen_word = @@all_terms[choice].word
+    chosen_word.replace new_word
+  end
+
+  def edit_definition
+  end
+
 end
