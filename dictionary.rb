@@ -27,6 +27,7 @@ def main_menu
   else
     puts "Not a valid option"
   end
+  main_menu
 end
 
 def add_word
@@ -54,7 +55,7 @@ def list_word
   end
   puts "Select the number of the word you would like to explore"
   user_input = gets.chomp.to_i
-  puts Term.all[user_input-1].word + ": " + Term.all[user_input-1].definition
+  puts Term.all[user_input-1].word + ": " + "#{Term.all[user_input-1].definition}"
   puts "\n"
   main_menu
 end
@@ -62,16 +63,15 @@ end
 def search_word
   puts "Type the word you would like to search for"
   user_word = gets.chomp
-    Term.all.each_with_index do |object, index|
-    if object.word.include? (user_word)
-      puts Term.search(user_word)
-      main_menu
-    else
-      puts "This is not a word in the dictionary"
-      main_menu
-      end
-     end
+  result = Term.search(user_word)
+  if result
+    puts result.word + ": " + "#{result.definition}"
+  else
+    puts "Sorry this is not a word in the dictionary"
+  end
+  main_menu
 end
+
 
 def edit_entry
   puts "Which word would you like to edit"
@@ -79,7 +79,7 @@ def edit_entry
   puts "#{index + 1}. #{term.word}"
   end
   user_number = gets.chomp.to_i
-  puts Term.all[user_number-1].word + ": " + Term.all[user_number-1].definition
+  puts Term.all[user_number-1].word + ": " + "#{Term.all[user_number-1].definition}"
   puts "\n"
   puts "Press 'w' to edit the word.  Press 'd' to edit the definition."
   user_input = gets.chomp

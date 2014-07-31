@@ -1,6 +1,9 @@
 class Term
 
+
   @@all_terms = []
+
+  @@definition = []
 
   def Term.all
     @@all_terms
@@ -12,15 +15,16 @@ class Term
 
   def Term.search word
     @@all_terms.each_with_index do |object, index|
-      if object.word == word
-       return object.word + ": " + object.definition
+      if object.word.include? (word)
+       return object
       end
     end
+    false
   end
 
   def initialize word, definition
     @word = word
-    @definition = definition
+    @@definition << definition
   end
 
   def save
@@ -32,7 +36,7 @@ class Term
   end
 
   def definition
-    @definition
+    @@definition
   end
 
   def edit_word(choice, new_word)

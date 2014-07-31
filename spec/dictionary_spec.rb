@@ -43,6 +43,9 @@ describe 'Term' do
     expect(Term.search ('find')).to eq 'find: look for me'
   end
 
+  # it 'lets you make multiple definitions for a single word' do
+
+
   describe '.all' do
     it 'is empty at first' do
       expect(Term.all).to eq []
