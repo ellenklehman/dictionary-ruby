@@ -2,13 +2,14 @@ require 'rspec'
 require 'term'
 
 describe 'Term' do
-  describe 'initialize' do
+  before do
+    Term.clear
+  end
     it 'initializes a word and a definition' do
       test_word = Term.new('spoon', 'a tool for eating soup')
       test_word.save
       expect(test_word).to be_an_instance_of Term
     end
-  end
 
   it 'allows word to be printed to the screen' do
     test_word = Term.new('spoon', 'a tool for eating soup' )
@@ -20,6 +21,20 @@ describe 'Term' do
     test_word = Term.new('spoon', 'a tool for eating soup' )
     test_word.save
     expect(test_word.definition).to eq 'a tool for eating soup'
+  end
+
+  describe '.all' do
+    it 'is empty at first' do
+      expect(Term.all).to eq []
+    end
+  end
+
+  describe '.clear' do
+    it' empties out all the saved words and definitions' do
+      Term.new('spoon', 'a tool for eating soup').save
+      Term.clear
+      expect(Term.all).to eq []
+    end
   end
 end
 
