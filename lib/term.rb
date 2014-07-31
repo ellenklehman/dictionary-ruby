@@ -11,6 +11,7 @@ class Term
 
   def Term.clear
     @@all_terms = []
+    @@definition = []
   end
 
   def Term.search word
@@ -45,8 +46,11 @@ class Term
   end
 
   def edit_definition(choice, new_definition)
-    chosen_definition = @@all_terms[choice].definition
+    chosen_definition = @@all_terms[choice].definition[choice]
     chosen_definition.replace new_definition
   end
 
+  def add_definition(word)
+    @@definition << word
+  end
 end

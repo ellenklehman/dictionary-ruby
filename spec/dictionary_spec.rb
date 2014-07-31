@@ -20,7 +20,7 @@ describe 'Term' do
   it 'allows the definition to be printed to the screen' do
     test_word = Term.new('spoon', 'a tool for eating soup' )
     test_word.save
-    expect(test_word.definition).to eq 'a tool for eating soup'
+    expect(test_word.definition).to eq ['a tool for eating soup']
   end
 
   it 'replaces a word' do
@@ -34,16 +34,21 @@ describe 'Term' do
   test_definition = Term.new('dog', 'a three legged animal')
   test_definition.save
   test_definition.edit_definition(0,'a four legged animal')
-  expect(test_definition.definition).to eq 'a four legged animal'
+  expect(test_definition.definition).to eq ['a four legged animal']
   end
 
   it 'searches the dictionary for a word' do
-    test_word = Term.new('find', 'look for me')
+    test_word = Term.new('find', ['look for me'])
     test_word.save
     expect(Term.search ('find')).to eq 'find: look for me'
   end
 
-  # it 'lets you make multiple definitions for a single word' do
+  it 'lets you make multiple definitions for a single word' do
+    test_word = Term.new('dog', 'happy')
+    test_word.save
+    test_word.add_definition('hungry')
+    expect(test_word.definition).to eq ['happy', 'hungry']
+  end
 
 
   describe '.all' do
