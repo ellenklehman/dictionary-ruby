@@ -1,9 +1,13 @@
 class Term
-
-
   @@all_terms = []
 
-  @@definition = []
+  # @@definition = []
+
+  def initialize word, definition
+    @word = word
+    @definitions = []
+    @definitions << definition
+  end
 
   def Term.all
     @@all_terms
@@ -11,7 +15,7 @@ class Term
 
   def Term.clear
     @@all_terms = []
-    @@definition = []
+    # @@definition = []
   end
 
   def Term.search word
@@ -23,11 +27,6 @@ class Term
     false
   end
 
-  def initialize word, definition
-    @word = word
-    @@definition << definition
-  end
-
   def save
     @@all_terms << self
   end
@@ -37,7 +36,7 @@ class Term
   end
 
   def definition
-    @@definition
+    @definitions
   end
 
   def edit_word(choice, new_word)
@@ -50,7 +49,7 @@ class Term
     chosen_definition.replace new_definition
   end
 
-  def add_definition(word)
-    @@definition << word
+  def add_definition(extra_definition)
+    @definitions << extra_definition
   end
 end

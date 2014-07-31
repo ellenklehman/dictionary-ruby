@@ -6,6 +6,7 @@ def main_menu
   puts "MAKE YOUR OWN DICTIONARY"
   puts "Press 'n' to add a new word and its definition"
   puts "Press 'l' to see a list of your words"
+  puts "Press 'a' to add a second deffinition to a word"
   puts "Press 'e' to edit an entry"
   puts "Press 's' to search the dictionary"
   puts "Press 'd' to remove a word form the dictionary"
@@ -17,6 +18,8 @@ def main_menu
     list_word
   elsif main_choice == 'e'
     edit_entry
+  elsif main_choice == 'a'
+    add_definition
   elsif main_choice == 's'
     search_word
   elsif main_choice == 'd'
@@ -104,6 +107,20 @@ def edit_entry
   end
   main_menu
 end
+
+def add_definition
+  puts "Which word would you like to add a new definition to?"
+  Term.all.each_with_index do |term, index|
+  puts "#{index + 1}. #{term.word}"
+  end
+  user_select = gets.chomp.to_i
+  puts "write your additional definition here:"
+  user_definition = gets.chomp
+  Term.all[user_select-1].add_definition(user_definition)
+  main_menu
+end
+
+
 
 
 def delete_word
